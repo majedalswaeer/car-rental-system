@@ -1,0 +1,22 @@
+server:
+  port: 8081  # Different port than the gateway
+
+spring:
+  application:
+    name: user-service  # Service ID in Eureka
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car-rental
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# Register with Eureka
+eureka:
+  instance:
+    hostname: localhost
+    instanceId: ${spring.application.name}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
